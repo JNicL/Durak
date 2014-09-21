@@ -14,7 +14,7 @@ from DurakGame  import DurakGame
 class Test_UserDatabase(object):
 
   def test_family_member(self):
-    DR = DurakRules(32)
+    DR = DurakRules()
     eq_(DR.family_members[3], range(24, 32))
 
   def test_declare_trumpf(self):
@@ -44,10 +44,15 @@ class Test_UserDatabase(object):
     eq_(DR.valid_hit(7,6), False)
     eq_(DR.valid_hit(7,8), False)
     eq_(DR.valid_hit(8,7), True)
+    eq_(DR.valid_hit(2,15), False)
+    
+    family_name = DurakRules.family_names[1]
+    DR.declare_trumpf(family_name)
+    eq_(DR.valid_hit(7,8), True)
+    print DR.family_members[1]
+    
 
-  def test_durak_game(self):
-    DG = DurakGame(players = 2)
-    DG.start_game()
+
 
 
 

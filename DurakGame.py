@@ -69,8 +69,15 @@ class DurakGame(DurakRules):
     self.declare_trumpf(self.card_family[trumpf_card])
     deck = [trumpf_card] + deck
     return trumpf_card
-
-  def play_round(self,
+  
+  def HumanPlayer(self, number):
+    mycards = self.player_cards[number]
+    print mycards
+    print "which one?"
+    player_answer = sys.stdin.readline()
+    player_answer = [int(u) for u in player_answer.split()]
+    return player_answer
+  
   def start_game(self):
     deck = range(self.decksize)
     random.shuffle(deck)
@@ -81,6 +88,7 @@ class DurakGame(DurakRules):
     cards_played          = []
     open_cards_on_table   = []
     closed_cards_on_table = []
+    self.HumanPlayer(0)
     #for player in range(self.players):
       #player_cards = pop_slice(deck, self.handcards)
       #print "player, player_cards:", player, player_cards
